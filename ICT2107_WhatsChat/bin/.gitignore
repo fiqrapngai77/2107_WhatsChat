@@ -1,4 +1,5 @@
 /whatschat/
+<<<<<<< HEAD
 /CreateDialog$1.class
 /CreateDialog$2.class
 /CreateDialog.class
@@ -12,3 +13,5 @@
 /WhatsChatClient$5.class
 /WhatsChatClient$6.class
 /WhatsChatClient.class
+=======
+>>>>>>> develop/registration_tuhin
