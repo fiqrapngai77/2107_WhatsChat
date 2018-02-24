@@ -2,9 +2,9 @@ package whatschat;
 
 import java.util.regex.Pattern;
 
-public final class Register {
+public final class Validation {
 
-	public static boolean validation(String userID) {
+	public static boolean userIDValidation(String userID) {
 
 		String noSpace = "\\S*";
 		String firstCharNumeric = "\\d";
@@ -25,5 +25,14 @@ public final class Register {
 			return true;
 		}
 
+	}
+	
+	public static boolean groupNameValidation(String groupName) {
+		if (Variables.getGroupNameList().contains(groupName)) {
+			Variables.setERROR("Group name is taken. ");
+			return false;
+		}else {
+			return true;
+		}
 	}
 }

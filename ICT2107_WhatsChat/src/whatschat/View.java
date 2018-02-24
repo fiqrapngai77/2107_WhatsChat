@@ -2,6 +2,9 @@ package whatschat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +35,8 @@ public class View extends JFrame{
 	private JTextArea conversationText;
 	private JTextField groupTextField;
 	
+	
+	
 	public void onClickRegister() {
 		
 		// Register User
@@ -39,8 +44,8 @@ public class View extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				String newUser = textFieldName.getText();
 				
-				if (Register.validation(newUser) == true){
-					Socket.dgpSend("registerUserID-" + newUser);
+				if (Validation.userIDValidation(newUser) == true){
+					Socket.dgpSend("register-" + newUser);
 					
 					
 				}else {
@@ -56,8 +61,8 @@ public class View extends JFrame{
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String newGroup = groupTextField.getText();
-				if (Register.validation(newGroup) == true){
-					Socket.dgpSend("createGroupName-" + newGroup);
+				if (Validation.groupNameValidation(newGroup) == true){
+					Socket.dgpSend("createGroup-" + newGroup);
 				}else {
 					appendConvoText(Variables.getERROR());
 				}
@@ -83,6 +88,19 @@ public class View extends JFrame{
 	public void updateListView() {
 		userList.setModel(Variables.getUserIDList());
 		groupList.setModel(Variables.getGroupNameList());
+	}
+	
+	public void onlineListOnClick() {
+	userList.addMouseListener(new MouseAdapter() {
+		public void mouseClicked(MouseEvent evt) {
+	        if (evt.getClickCount() == 2) {
+	            String onlineUser = (String) userList.getSelectedValue();
+	            Variables.put("123",onlineUser);
+	            System.out.println(onlineUser);
+	        } 
+	    }
+    });
+	
 	}
 	
 
@@ -118,6 +136,7 @@ public class View extends JFrame{
 		groupTextField.setBounds(130, 70, 118, 20);
 		contentPane.add(groupTextField);
 		groupTextField.setColumns(10);
+		
 
 		// Create Button
 		btnCreate = new JButton("Create");
