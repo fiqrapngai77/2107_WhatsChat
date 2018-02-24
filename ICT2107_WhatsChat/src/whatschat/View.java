@@ -24,33 +24,11 @@ public class View extends JFrame{
 	private JButton btnEdit;
 	private JButton btnDelete;
 	private JSeparator separator;
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-	private JList userList; 
-	private DefaultListModel users;
-	private static DefaultListModel groups;
-=======
 	private JList userList;
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 	private JLabel lblGroups;
-	private static JList groupList;
+	private JList groupList;
 	private JLabel lblConversation;
 	private JTextField messageTextField;
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-	private static WhatsChatClient frame;
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new WhatsChatClient();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-=======
 	private JTextArea conversationText;
 	private JTextField groupTextField;
 	
@@ -82,7 +60,6 @@ public class View extends JFrame{
 					Socket.dgpSend("createGroupName-" + newGroup);
 				}else {
 					appendConvoText(Variables.getERROR());
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 				}
 			}
 		});
@@ -118,49 +95,10 @@ public class View extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-		
-		setTitle("WhatsChatClient");
-		
-		//Initialize DefaultListModels (basically arrays)
-		users = new DefaultListModel();
-		groups = new DefaultListModel();
-		
-		//Dummy Data
-		users.addElement("Kenny Omega");
-		groups.addElement("Example Group");
-		
-		//Initialize Views
-		JButton btnRegister = new JButton("Register User");
-		textFieldName = new JTextField();
-		JLabel lblGroupManagement = new JLabel("Group Management");
-		btnCreate = new JButton("Create");
-		btnEdit = new JButton("Edit");
-		btnDelete = new JButton("Delete");
-		separator = new JSeparator();
-		messageTextField = new JTextField();
-		JButton btnSendMessage = new JButton("Send Message");
-		
-		//Register Button
-		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				newUser = textFieldName.getText();
-				
-				//Username validation
-				if(newUser.length()<8 || newUser.contains(" ") || Character.isDigit(newUser.charAt(0)) || newUser.isEmpty()) {
-					System.out.println("Error");
-				}else {
-					users.addElement(newUser);
-					userList.setModel(users);
-				}
-			}
-		});
-=======
 
 		// -------------------------User Register-----------------------------------------//
 		// Register Button
 		btnRegister = new JButton("Register User");
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 		btnRegister.setBounds(10, 21, 105, 23);
 		contentPane.add(btnRegister);
 
@@ -185,35 +123,6 @@ public class View extends JFrame{
 		btnCreate = new JButton("Create");
 		btnCreate.setBounds(10, 101, 89, 23);
 		contentPane.add(btnCreate);
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-		btnCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new CreateDialog().setVisible(true);
-				frame.setEnabled(false);
-			}
-		});
-				
-		//Edit Button
-		btnEdit.setBounds(109, 101, 89, 23);
-		contentPane.add(btnEdit);
-		btnEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new EditDialog(groupList.getSelectedIndex(),groupList.getSelectedValue().toString()).setVisible(true);
-				frame.setEnabled(false);
-			}
-		});
-		
-		//Delete Button
-		btnDelete.setBounds(208, 101, 89, 23);
-		contentPane.add(btnDelete);
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				groups.removeElementAt(groupList.getSelectedIndex());
-			}
-		});
-		
-		//Separator
-=======
 
 		// Edit Button
 		btnEdit = new JButton("Edit");
@@ -227,7 +136,6 @@ public class View extends JFrame{
 
 		// Separator
 		separator = new JSeparator();
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 		separator.setBounds(10, 129, 289, 2);
 		contentPane.add(separator);
 
@@ -269,21 +177,8 @@ public class View extends JFrame{
 		conversationText.setLineWrap(true);
 		conversationText.setBounds(307, 188, 344, 241);
 		contentPane.add(conversationText);
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-		
-		
-		btnSendMessage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				message = messageTextField.getText();
-				conversationText.append(message + "\n");
-				messageTextField.setText("");
-				
-			}
-		});
-=======
 
 		btnSendMessage = new JButton("Send Message");
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 		btnSendMessage.setBounds(10, 461, 128, 23);
 		contentPane.add(btnSendMessage);
 
@@ -293,25 +188,7 @@ public class View extends JFrame{
 		messageTextField.setColumns(10);
 		
 	}
-<<<<<<< HEAD:ICT2107_WhatsChat/src/WhatsChatClient.java
-	
-	//--------------------------Functions to get the private variables-----------------------//
-	public static DefaultListModel getGroupModel() {
-		return groups;
-	}
-	
-	public static JList getGroupList() {
-		return groupList;
-	}
-	
-	public static JFrame getFrame() {
-		return frame;
-	}
-	
-	//---------------------------------------------------------------------------------------//
-=======
 
 
 	
->>>>>>> develop/registration_tuhin:ICT2107_WhatsChat/src/whatschat/View.java
 }
