@@ -35,12 +35,12 @@ public class WhatsChatClient extends JFrame {
 	private JSeparator separator;
 	private JList userList; 
 	private DefaultListModel users;
-	private DefaultListModel groups;
+	private static DefaultListModel groups;
 	private JLabel lblGroups;
-	private JList groupList;
+	private static JList groupList;
 	private JLabel lblConversation;
 	private JTextField messageTextField;
-	
+	private static WhatsChatClient frame;
 	
 
 	/**
@@ -50,7 +50,7 @@ public class WhatsChatClient extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WhatsChatClient frame = new WhatsChatClient();
+					frame = new WhatsChatClient();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,20 +70,24 @@ public class WhatsChatClient extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		setTitle("WhatsChatClient");
+		
 		//Initialize DefaultListModels (basically arrays)
 		users = new DefaultListModel();
 		groups = new DefaultListModel();
+		
+		//Dummy Data
+		users.addElement("Kenny Omega");
+		groups.addElement("Example Group");
 		
 		//Initialize Views
 		JButton btnRegister = new JButton("Register User");
 		textFieldName = new JTextField();
 		JLabel lblGroupManagement = new JLabel("Group Management");
 		btnCreate = new JButton("Create");
-		
 		btnEdit = new JButton("Edit");
 		btnDelete = new JButton("Delete");
 		separator = new JSeparator();
-		
 		messageTextField = new JTextField();
 		JButton btnSendMessage = new JButton("Send Message");
 		
@@ -91,9 +95,14 @@ public class WhatsChatClient extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				newUser = textFieldName.getText();
-				users.addElement(newUser);
-				userList.setModel(users);
 				
+				//Username validation
+				if(newUser.length()<8 || newUser.contains(" ") || Character.isDigit(newUser.charAt(0)) || newUser.isEmpty()) {
+					System.out.println("Error");
+				}else {
+					users.addElement(newUser);
+					userList.setModel(users);
+				}
 			}
 		});
 		btnRegister.setBounds(10, 21, 105, 23);
@@ -114,18 +123,29 @@ public class WhatsChatClient extends JFrame {
 		contentPane.add(btnCreate);
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				groups.addElement("group");
-				groupList.setModel(groups);
+				new CreateDialog().setVisible(true);
+				frame.setEnabled(false);
 			}
 		});
 				
 		//Edit Button
 		btnEdit.setBounds(109, 101, 89, 23);
 		contentPane.add(btnEdit);
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new EditDialog(groupList.getSelectedIndex(),groupList.getSelectedValue().toString()).setVisible(true);
+				frame.setEnabled(false);
+			}
+		});
 		
 		//Delete Button
 		btnDelete.setBounds(208, 101, 89, 23);
 		contentPane.add(btnDelete);
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				groups.removeElementAt(groupList.getSelectedIndex());
+			}
+		});
 		
 		//Separator
 		separator.setBounds(10, 129, 289, 2);
@@ -177,8 +197,9 @@ public class WhatsChatClient extends JFrame {
 		btnSendMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				message = messageTextField.getText();
-				conversationText.append(message);
+				conversationText.append(message + "\n");
 				messageTextField.setText("");
+				
 			}
 		});
 		btnSendMessage.setBounds(10, 461, 128, 23);
@@ -193,4 +214,19 @@ public class WhatsChatClient extends JFrame {
 				
 		
 	}
+	
+	//--------------------------Functions to get the private variables-----------------------//
+	public static DefaultListModel getGroupModel() {
+		return groups;
+	}
+	
+	public static JList getGroupList() {
+		return groupList;
+	}
+	
+	public static JFrame getFrame() {
+		return frame;
+	}
+	
+	//---------------------------------------------------------------------------------------//
 }
