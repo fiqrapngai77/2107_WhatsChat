@@ -27,17 +27,6 @@ public final class Variables {
 		    System.out.println(values);
 		}
 	}
-	
-	public static void put(String groupName, String userID) {
-		map.putIfAbsent(groupName, userID, new HashMap<String, List<String>>();
-		map.get(groupName).add(userID);
-		for (Entry<String, List<String>> ee : map.entrySet()) {
-		    String key = ee.getKey();
-		    List<String> values = ee.getValue();
-		    // TODO: Do something.
-		    System.out.println(values);
-		}
-	}
 
 
 	//Get userIDList

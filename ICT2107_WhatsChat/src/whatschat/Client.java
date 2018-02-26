@@ -57,7 +57,7 @@ public class Client {
 					}else if(command.equals("selectMEmbers")) {
 						//TODO: Select group members
 						//TODO: Display to online users they are part of group
-						Variables.
+						
 						
 					}else if (command.equals("send")) {
 						//TODO: Select/Switch active group
