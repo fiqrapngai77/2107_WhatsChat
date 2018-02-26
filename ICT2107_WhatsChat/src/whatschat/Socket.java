@@ -8,6 +8,8 @@ import java.net.MulticastSocket;
 public final class Socket {
 
 	static String WKA = "230.1.1.1";
+	static int X, Y;
+	static String newMulticastAddr = "'230.1."+ String.valueOf(X) + String.valueOf(Y)+"'";
 	static int port = 6789;
 	static MulticastSocket multicastSocket = null;
 	static InetAddress multicastGroup = null;

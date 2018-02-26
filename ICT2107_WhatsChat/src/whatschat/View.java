@@ -96,7 +96,6 @@ public class View extends JFrame{
 	        if (evt.getClickCount() == 2) {
 	            String onlineUser = (String) userList.getSelectedValue();
 	            Variables.put("123",onlineUser);
-	            System.out.println(onlineUser);
 	        } 
 	    }
     });

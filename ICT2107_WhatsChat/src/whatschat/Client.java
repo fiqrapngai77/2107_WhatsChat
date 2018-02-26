@@ -53,9 +53,12 @@ public class Client {
 						Variables.setGroupNameList(arg);//put new Group name in group list
 						frame.updateListView();//Update entire list view in all running clients
 						frame.appendConvoText(arg + " group has been created!");//Update and displays new group name to all running clients
+						
+					}else if(command.equals("selectMEmbers")) {
 						//TODO: Select group members
 						//TODO: Display to online users they are part of group
-
+						Variables.
+						
 					}else if (command.equals("send")) {
 						//TODO: Select/Switch active group
 						//TODO: Display msg of active group in convo box
